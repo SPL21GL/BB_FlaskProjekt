@@ -1,7 +1,6 @@
-from flask import Flask, request, redirect, flash
+from flask import request, redirect, flash
 from flask.templating import render_template
 from flask import Blueprint
-import sqlalchemy
 from models import db, Organisator
 from Forms.addOrganisator import AddOrganisatorForm
 from Forms.deleteOrganisatorForm import DeleteOrganisatorForm
@@ -9,9 +8,10 @@ from Forms.editOrganisatorForm import EditOrganisatorForm
 
 organisator_blueprint = Blueprint('organisator_blueprint', __name__)
 
-@organisator_blueprint.route("/organisator", methods=["get","post"])
+
+@organisator_blueprint.route("/organisator", methods=["get", "post"])
 def index():
-    
+
     addOrganisatorFormObject = AddOrganisatorForm()
 
     if addOrganisatorFormObject.validate_on_submit():
@@ -32,7 +32,8 @@ def index():
         return redirect("/organisator")
 
     marathonlauf = db.session.query(Organisator).all()
-    return render_template("organisator.html", form = addOrganisatorFormObject, items = marathonlauf)
+    return render_template("organisator.html", form=addOrganisatorFormObject, items=marathonlauf)
+
 
 @organisator_blueprint.route("/organisator/delete", methods=["post"])
 def deleteOrganisator():
@@ -41,16 +42,18 @@ def deleteOrganisator():
         print("gültig")
 
         OrganisatorIdToDelete = deleteOrganisatorFormObj.OrganisationID.data
-        OrganisatorToDelete = db.session.query(Organisator).filter(Organisator.OrganisationID == OrganisatorIdToDelete)
+        OrganisatorToDelete = db.session.query(Organisator).filter(
+            Organisator.OrganisationID == OrganisatorIdToDelete)
         OrganisatorToDelete.delete()
-        
+
         db.session.commit()
     else:
         print("Fatal Error")
-    
-    flash(f"Organisator with id {OrganisatorIdToDelete} has been deleted")    
+
+    flash(f"Organisator with id {OrganisatorIdToDelete} has been deleted")
 
     return redirect("/organisator")
+
 
 @organisator_blueprint.route("/organisator/editOrganisatorForm", methods=["post"])
 def submitEditForm():
@@ -61,7 +64,8 @@ def submitEditForm():
 
         OrganisationID = editOrganisatorFormObject.OrganisationID.data
 
-        Organisator_to_edit = db.session.query(Organisator).filter(Organisator.OrganisationID == OrganisationID).first()
+        Organisator_to_edit = db.session.query(Organisator).filter(
+            Organisator.OrganisationID == OrganisationID).first()
         Organisator_to_edit.Anschrift = editOrganisatorFormObject.Anschrift.data
         Organisator_to_edit.Name = editOrganisatorFormObject.Name.data
         Organisator_to_edit.Sponsoren = editOrganisatorFormObject.Sponsoren.data
@@ -73,12 +77,14 @@ def submitEditForm():
     else:
         raise ("Fatal Error")
 
+
 @organisator_blueprint.route("/organisator/editOrganisatorForm")
 def showEditForm():
     OrganisationID = request.args["OrganisationID"]
 
-    Organisator_to_edit = db.session.query(Organisator).filter(Organisator.OrganisationID == OrganisationID).first()
-    
+    Organisator_to_edit = db.session.query(Organisator).filter(
+        Organisator.OrganisationID == OrganisationID).first()
+
     editOrganisatorFormObject = EditOrganisatorForm()
 
     editOrganisatorFormObject.OrganisationID.data = Organisator_to_edit.OrganisationID
@@ -86,5 +92,5 @@ def showEditForm():
     editOrganisatorFormObject.Name.data = Organisator_to_edit.Name
     editOrganisatorFormObject.Sponsoren.data = Organisator_to_edit.Sponsoren
     editOrganisatorFormObject.Telefonnummer.data = Organisator_to_edit.Telefonnummer
-    
-    return render_template("editOrganisatorForm.html", form = editOrganisatorFormObject)
+
+    return render_template("editOrganisatorForm.html", form=editOrganisatorFormObject)
