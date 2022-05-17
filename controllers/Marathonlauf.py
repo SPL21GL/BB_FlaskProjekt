@@ -71,7 +71,8 @@ def submitEditForm():
         Marathonlauf_to_edit.Preisgeld = editMarathonlaufFormObject.Preisgeld.data
         Marathonlauf_to_edit.Kilometer = editMarathonlaufFormObject.Kilometer.data
         Marathonlauf_to_edit.Datum = editMarathonlaufFormObject.Datum.data
-        Marathonlauf_to_edit.Preis_für_Teilnahme = editMarathonlaufFormObject.Preis_für_Teilnahme.data
+        Marathonlauf_to_edit.Preis_für_Teilnahme = \
+            editMarathonlaufFormObject.Preis_für_Teilnahme.data
         Marathonlauf_to_edit.Besucher = editMarathonlaufFormObject.Besucher.data
 
         db.session.commit()
