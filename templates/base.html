@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-
-
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +9,6 @@
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
             <style>
     
-
                 tr {
                     background-color: rgb(255, 255, 255);
                 }
@@ -126,38 +123,38 @@
 
 
                 body {
-  width: 100%;
-  height: 100vh;
-  background-color: #000;
-  background-image: radial-gradient(circle at top right, rgba(121, 68, 154, 0.13),       transparent),
-    radial-gradient(circle at 20% 80%, rgba(41, 196, 255, 0.13), transparent)
-}
-canvas {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-}
+                    width: 100%;
+                    height: 100vh;
+                    background-color: #000;
+                    background-image: radial-gradient(circle at top right, rgba(121, 68, 154, 0.13),       transparent),
+                        radial-gradient(circle at 20% 80%, rgba(41, 196, 255, 0.13), transparent)
+                }
+                canvas {
+                    position: fixed;
+                    width: 100%;
+                    height: 100%;
+                }
 
-p {
-  position: absolute;
-  bottom: 2vmin;
-  right: 2vmin;
-  color: rgba(255,255,255,0.2);
-  text-decoration: none;
-}
+                p {
+                    position: absolute;
+                    bottom: 2vmin;
+                    right: 2vmin;
+                    color: rgba(255,255,255,0.2);
+                    text-decoration: none;
+                }
 
-p:hover {
-  color: #fff;
-}
+                p:hover {
+                    color: #fff;
+                }
 
-h1 {
-    color:rgb(255, 255, 255)
-}
+                h1 {
+                        color:rgb(255, 255, 255)
+                }
 
-h2 {
-    color: rgb(255, 0, 0);
-    font-size: 1.2em
-}
+                h2 {
+                        color: rgb(255, 0, 0);
+                        font-size: 1.2em
+                }
                 
             </style>
     </head>
@@ -171,8 +168,6 @@ h2 {
         <li><a onclick="window.location.href='/organisator'" target="_blank">Organisator</a></li>
         <li style="float:right"><a class="active" onclick="window.location.href='/'" target="_blank"><span>H<span>ome</span></span></a></li>
     </ul>
-
-    <h2>Warning: Bitte überall mindestens 1 Eintag lassen</h2>
 
     {%block body%}
 
