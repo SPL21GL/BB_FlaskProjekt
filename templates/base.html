@@ -189,6 +189,12 @@
                         transform: scale(0);
                     }
                 }
+
+                ul.sticky {
+                    position: -webkit-sticky;
+                    position: sticky;
+                    top: 0;
+                }
                 
             </style>
     </head>
@@ -198,7 +204,7 @@
 
     <h1>Marathon</h1>
 
-    <ul>
+    <ul class="sticky">
         <li><a onclick="window.location.href='/marathonlauf'" target="_blank">Marathonlauf</a></li>
         <li><a onclick="window.location.href='/laufer'" target="_blank">Läufer</a></li>
         <li><a onclick="window.location.href='/organisator'" target="_blank">Organisator</a></li>
