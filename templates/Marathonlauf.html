@@ -2,48 +2,7 @@
 
 {%block body%} 
 
-    <form method="post">
-
-        {{form.csrf_token}}
-
-        <div class="row mb-3">
-            <label for="Preisgeld" class="col-sm-2 col-form-label">Preisgeld</label>
-            <div class="col-sm-10">
-                {{form.Preisgeld()}}
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <label for="Kilometer" class="col-sm-2 col-form-label">Kilometer</label>
-            <div class="col-sm-10">
-                {{form.Kilometer()}}
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <label for="Datum" class="col-sm-2 col-form-label">Datum</label>
-            <div class="col-sm-10">
-                {{form.Datum()}}
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <label for="Preis_für_Teilnahme" class="col-sm-2 col-form-label">Preis_für_Teilnahme</label>
-            <div class="col-sm-10">
-                {{form.Preis_für_Teilnahme()}}
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <label for="Besucher" class="col-sm-2 col-form-label">Besucher</label>
-            <div class="col-sm-10">
-                {{form.Besucher()}}
-            </div>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Add</button>
-
-    </form>
+<button type="submit" class="btn btn-primary" onclick="window.location.href='/marathonlauf/addMarathonLaufForm'">Add</button>
 
     <table class="table">
         <thead>
@@ -58,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            {%for item in items:%}
+            {%for item in marathonlauf:%}
                 <tr>
                     <td scope="row">{{item.MarathonID}}</td>
                     <td>{{item.Preisgeld}}</td>

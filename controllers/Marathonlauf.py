@@ -5,11 +5,22 @@ from models import db, Marathonlauf
 from Forms.addMarathonlaufForm import AddMarathonlaufForm
 from Forms.deleteMarathonlaufForm import DeleteMarathonlaufForm
 from Forms.editMarathonlaufForm import EditMarathonlaufForm
+import sqlalchemy.orm
 
 marathonlauf_blueprint = Blueprint('marathonlauf_blueprint', __name__)
 
+@marathonlauf_blueprint.route("/marathonlauf")
+def marathonlauf():
 
-@marathonlauf_blueprint.route("/marathonlauf", methods=["get", "post"])
+    addMarathonlaufFormObject = AddMarathonlaufForm()
+
+    session: sqlalchemy.orm.scoping.scoped_session = db.session
+
+    marathonlauf = session.query(Marathonlauf).order_by(Marathonlauf.MarathonID).all()
+
+    return render_template("marathonlauf.html", marathonlauf=marathonlauf, form=addMarathonlaufFormObject)
+
+@marathonlauf_blueprint.route("/marathonlauf/addMarathonLaufForm", methods=["get", "post"])
 def index():
 
     addMarathonlaufFormObject = AddMarathonlaufForm()
@@ -34,7 +45,7 @@ def index():
         return redirect("/marathonlauf")
 
     marathonlauf = db.session.query(Marathonlauf).all()
-    return render_template("marathonlauf.html", form=addMarathonlaufFormObject, items=marathonlauf)
+    return render_template("addMarathonlaufForm.html", form=addMarathonlaufFormObject, items=marathonlauf)
 
 
 @marathonlauf_blueprint.route("/marathonlauf/delete", methods=["post"])
