@@ -5,11 +5,22 @@ from models import db, Organisator
 from Forms.addOrganisator import AddOrganisatorForm
 from Forms.deleteOrganisatorForm import DeleteOrganisatorForm
 from Forms.editOrganisatorForm import EditOrganisatorForm
+import sqlalchemy.orm
 
 organisator_blueprint = Blueprint('organisator_blueprint', __name__)
 
+@organisator_blueprint.route("/organisator")
+def marathonlauf():
 
-@organisator_blueprint.route("/organisator", methods=["get", "post"])
+    addOrganisatorFormObject = AddOrganisatorForm()
+
+    session: sqlalchemy.orm.scoping.scoped_session = db.session
+
+    organisator = session.query(Organisator).order_by(Organisator.OrganisationID).all()
+
+    return render_template("organisator.html", items=organisator, form=addOrganisatorFormObject)
+
+@organisator_blueprint.route("/organisator/addOrganisatorForm", methods=["get", "post"])
 def index():
 
     addOrganisatorFormObject = AddOrganisatorForm()
@@ -31,8 +42,8 @@ def index():
 
         return redirect("/organisator")
 
-    marathonlauf = db.session.query(Organisator).all()
-    return render_template("organisator.html", form=addOrganisatorFormObject, items=marathonlauf)
+    organisator = db.session.query(Organisator).all()
+    return render_template("addOrganisatorForm.html", form=addOrganisatorFormObject, items=organisator)
 
 
 @organisator_blueprint.route("/organisator/delete", methods=["post"])

@@ -1,0 +1,41 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+    <form method="post">
+
+        {{form.csrf_token}}
+
+        <div class="row mb-3">
+            <label for="Anschrift" class="col-sm-2 col-form-label">Anschrift</label>
+            <div class="col-sm-10">
+                {{form.Anschrift()}}
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="Name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                {{form.Name()}}
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="Sponsoren" class="col-sm-2 col-form-label">Sponsoren</label>
+            <div class="col-sm-10">
+                {{form.Sponsoren()}}
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="Telefonnummer" class="col-sm-2 col-form-label">Telefonnummer</label>
+            <div class="col-sm-10">
+                {{form.Telefonnummer()}}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add</button>
+
+    </form>
+
+{%endblock%}
