@@ -9,6 +9,7 @@ import sqlalchemy.orm
 
 organisator_blueprint = Blueprint('organisator_blueprint', __name__)
 
+
 @organisator_blueprint.route("/organisator")
 def marathonlauf():
 
@@ -16,9 +17,11 @@ def marathonlauf():
 
     session: sqlalchemy.orm.scoping.scoped_session = db.session
 
-    organisator = session.query(Organisator).order_by(Organisator.OrganisationID).all()
+    organisator = session.query(Organisator).order_by(
+        Organisator.OrganisationID).all()
 
     return render_template("organisator.html", items=organisator, form=addOrganisatorFormObject)
+
 
 @organisator_blueprint.route("/organisator/addOrganisatorForm", methods=["get", "post"])
 def index():

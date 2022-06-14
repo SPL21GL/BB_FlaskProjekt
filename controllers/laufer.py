@@ -9,6 +9,7 @@ import sqlalchemy.orm
 
 laufer_blueprint = Blueprint('laufer_blueprint', __name__)
 
+
 @laufer_blueprint.route("/laufer")
 def marathonlauf():
 
@@ -19,6 +20,7 @@ def marathonlauf():
     laufer = session.query(Laufer).order_by(Laufer.LauferID).all()
 
     return render_template("laufer.html", items=laufer, form=addLauferFormObject)
+
 
 @laufer_blueprint.route("/laufer/addLauferForm", methods=["get", "post"])
 def index():
