@@ -5,11 +5,22 @@ from models import db, Laufer
 from Forms.addLauferForm import AddLauferForm
 from Forms.deleteLauferForm import DeleteLauferForm
 from Forms.editLauferForm import EditLauferForm
+import sqlalchemy.orm
 
 laufer_blueprint = Blueprint('laufer_blueprint', __name__)
 
+@laufer_blueprint.route("/laufer")
+def marathonlauf():
 
-@laufer_blueprint.route("/laufer", methods=["get", "post"])
+    addLauferFormObject = AddLauferForm()
+
+    session: sqlalchemy.orm.scoping.scoped_session = db.session
+
+    laufer = session.query(Laufer).order_by(Laufer.LauferID).all()
+
+    return render_template("laufer.html", items=laufer, form=addLauferFormObject)
+
+@laufer_blueprint.route("/laufer/addLauferForm", methods=["get", "post"])
 def index():
 
     addLauferFormObject = AddLauferForm()
@@ -34,7 +45,7 @@ def index():
         return redirect("/laufer")
 
     laufer = db.session.query(Laufer).all()
-    return render_template("laufer.html", form=addLauferFormObject, items=laufer)
+    return render_template("addlauferForm.html", form=addLauferFormObject, items=laufer)
 
 
 @laufer_blueprint.route("/laufer/delete", methods=["post"])

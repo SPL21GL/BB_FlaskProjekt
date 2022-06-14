@@ -1,0 +1,48 @@
+{%extends 'base.html'%}
+
+{%block body%} 
+
+    <form method="post">
+
+        {{form.csrf_token}}
+
+        <div class="row mb-3">
+            <label for="Herkunft" class="col-sm-2 col-form-label">Herkunft</label>
+            <div class="col-sm-10">
+                {{form.Herkunft()}}
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="Email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                {{form.Email()}}
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="Nachname" class="col-sm-2 col-form-label">Nachname</label>
+            <div class="col-sm-10">
+                {{form.Nachname()}}
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="Vorname" class="col-sm-2 col-form-label">Vorname</label>
+            <div class="col-sm-10">
+                {{form.Vorname()}}
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="Geburtsdatum" class="col-sm-2 col-form-label">Geburtsdatum</label>
+            <div class="col-sm-10">
+                {{form.Geburtsdatum()}}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add</button>
+
+    </form>
+
+{%endblock%}
